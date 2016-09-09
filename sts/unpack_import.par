@@ -1,0 +1,9 @@
+# $Header: v1.1 unpack_ods_import.par 2016/08/25 andy.klock $
+FILE=spm_stgtab_sts_ptr.dmp 
+LOG=spm_stgtab_sts_ptr_imp.log
+FROMUSER=ANDY
+TABLES=spm_stgtab_sts
+STATISTICS=NONE
+IGNORE=Y
+BUFFER=10485760
+COMMIT=Y

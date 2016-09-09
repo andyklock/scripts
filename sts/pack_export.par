@@ -1,0 +1,5 @@
+# $Header: v1.0 pack_ods_export.par 2016/08/25 andy.klock $
+FILE=spm_stgtab_sts_ptr.dmp
+LOG=spm_stgtab_sts_ptr_exp.log
+TABLES=spm_stgtab_sts
+STATISTICS=NONE
