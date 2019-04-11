@@ -1,4 +1,4 @@
-REM $Header: v1.0 create_sql_tuning_set_from_awr.sql 2016/08/25 andy.klock $
+REM $Header: v1.1 create_sql_tuning_set_from_awr.sql 2016/08/25 andy.klock $
 
 set echo on
 set serveroutput on;
@@ -38,7 +38,7 @@ BEGIN
   l_sqlset_name := '&&sqlset_tag._AWR_&&sqlset_uniq_identifier';
 
   -- Dan Fink code that converts comma delimited strings into something we can use
-  l_parsing_schema_name_list:=UPPER(CHR(39)||REPLACE('&&parsing_schemas',',',CHR(39)||','||CHR(39))||CHR(39));
+  l_parsing_schema_name_list:=REGEXP_REPLACE(UPPER(CHR(39)||REPLACE('&&parsing_schemas',',',CHR(39)||','||CHR(39))||CHR(39)),' +','');
   l_description := 'SQL Tuning Set - AWR captured for &&sqlset_tag';
 
   BEGIN

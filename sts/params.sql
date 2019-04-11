@@ -1,4 +1,4 @@
-REM $Header: v1.0 params.sql 2016/08/25 andy.klock $
+REM $Header: v1.1 params.sql 2016/08/25 andy.klock $
 REM Parameter script to set common variables. Previously this was done similarly to Carlos Sierra's method
 REM which relied on SQL Prompts
 REM See https://github.com/carlos-sierra/cscripts/archive/master.zip (spm directory) for other SPM scripts
@@ -13,7 +13,10 @@ define sqlset_tag = Release1.1
 
 -- parsing schema list
 -- needs to be comma delimited
-define parsing_schemas = ANDY
+-- Added double quotes in case a space shows up between schemas
+-- For example, "ANDY,JERRY, BOB, PHIL"
+-- But in general, avoid spaces since this is a parameter value :) 
+define parsing_schemas = "ANDY"
 
 -- tablespace_name for tuning set staging table 
 -- check DBA_TS_QUOTAS
