@@ -1,4 +1,4 @@
-REM $Header: v1.1 create_sql_tuning_set_from_awr.sql 2016/08/25 andy.klock $
+REM $Header: v1.2 create_sql_tuning_set_from_awr.sql 2020-07-17 andy.klock $
 
 set echo on
 set serveroutput on;
@@ -22,7 +22,7 @@ spool create_sql_tuning_set_from_awr_&&snap_time._&&sqlset_uniq_identifier..log;
 sho user
 select global_name from global_name;
 
-select min(snap_id),max(snap_id) from dba_hist_snapshot;
+select min(snap_id),max(snap_id) from dba_hist_snapshot s, v$database d where s.dbid = d.dbid;
 
 
 DECLARE
@@ -58,7 +58,9 @@ BEGIN
     sqlset_owner => upper('&&sqlset_owner') );
   DBMS_OUTPUT.put_line('created sqlset: '||l_sqlset_name);
 
-  select min(snap_id),max(snap_id) into l_snap_begin, l_snap_end from dba_hist_snapshot;
+  select min(snap_id),max(snap_id) into l_snap_begin, l_snap_end
+  from dba_hist_snapshot s, v$database d
+  where s.dbid = d.dbid;
 
   OPEN sts_cur FOR
     SELECT VALUE(p)
